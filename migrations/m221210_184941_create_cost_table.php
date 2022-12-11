@@ -24,7 +24,7 @@ class m221210_184941_create_cost_table extends Migration
         'employees_id',
       );
         $this->addForeignKey(
-        'employees_id',
+        'fk_employees_id',
         'cost',
         'employees_id',
         'employees',
@@ -36,7 +36,7 @@ class m221210_184941_create_cost_table extends Migration
         'building_id',
       );
         $this->addForeignKey(
-        'building_id',
+        'fk_building_id',
         'cost',
         'building_id',
         'building',
@@ -50,7 +50,7 @@ class m221210_184941_create_cost_table extends Migration
     public function safeDown()
     {
          $this->dropForeignKey(
-        'employees_id',
+        'fk_employees_id',
         'employees',
         'building_id',
         'building'
