@@ -51,6 +51,7 @@ class m221210_192947_create_workman_table extends Migration
         'CASCADE',
         'CASCADE');
         
+        //test
     }
 
     /**
