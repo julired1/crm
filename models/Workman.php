@@ -6,7 +6,7 @@ use Yii;
 
 /**
  * This is the model class for table "workman".
- *
+ * @property int $id
  * @property int $building_id Объект
  * @property int $employees_id Сотрудник
  * @property bool|null $medical Медицинский осмотр
@@ -36,7 +36,7 @@ class Workman extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['building_id', 'employees_id', 'limit', 'examination', 'education'], 'required'],
+            [['id','building_id', 'employees_id', 'limit', 'examination', 'education'], 'required'],
             [['building_id', 'employees_id', 'limit'], 'default', 'value' => null],
             [['building_id', 'employees_id', 'limit'], 'integer'],
             [['medical', 'criminal', 'examination'], 'boolean'],
@@ -53,6 +53,7 @@ class Workman extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id'=> 'ID',
             'building_id' => 'Объект',
             'employees_id' => 'Сотрудник',
             'medical' => 'Медицинский осмотр',
