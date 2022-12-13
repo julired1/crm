@@ -6,7 +6,7 @@ use Yii;
 
 /**
  * This is the model class for table "identification".
- *
+ * @property int $id
  * @property int|null $employees_id Сотрудник
  * @property string $name ФИО
  * @property string|null $email Email адрес
@@ -45,6 +45,7 @@ class Identification extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'employees_id' => 'Сотрудник',
             'name' => 'ФИО',
             'email' => 'Email адрес',

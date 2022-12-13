@@ -15,6 +15,9 @@ $this->title = 'CRM_ПРОЕКТ';
         <?= Html::a('Строительные объекты', ['building/index'],['class' =>'btn btn-success']) ?>
         <?= Html::a('Сотрудники', ['employees/index'],['class' =>'btn btn-success']) ?>
         <?= Html::a('Рабочие', ['workman/index'],['class' =>'btn btn-success']) ?>
+        <?= Html::a('Идентификация', ['identification/index'],['class' =>'btn btn-success']) ?>
+        <?= Html::a('Табель зарплат', ['payroll/index'],['class' =>'btn btn-success']) ?>
+        <?= Html::a('Табель затрат', ['cost/index'],['class' =>'btn btn-success']) ?>
         </p>
     </div>
 

@@ -6,11 +6,11 @@ use Yii;
 
 /**
  * This is the model class for table "cost".
- *
+ * @property int @id 
  * @property int $building_id Объект
  * @property int $employees_id Сотрудник
  * @property int|null $product Наименование
- * @property float $price Наименование
+ * @property float $price Цена
  *
  * @property Building $building
  * @property Employees $employees
@@ -46,10 +46,11 @@ class Cost extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'building_id' => 'Объект',
             'employees_id' => 'Сотрудник',
             'product' => 'Наименование',
-            'price' => 'Наименование',
+            'price' => 'Стоимость',
         ];
     }
 
