@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 /** @var app\models\WorkmanSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Workmen';
+$this->title = 'Рабочие';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="workman-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Workman', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить рабочего', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -29,19 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            'id',
             'building_id',
             'employees_id',
             'medical:boolean',
             'naks',
             'criminal:boolean',
-            //'speciality:ntext',
-            //'limit',
-            //'examination:boolean',
-            //'education:ntext',
-            //'id',
+            'speciality:ntext',
+            'limit',
+            'examination:boolean',
+            'education:ntext',
             [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Workman $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

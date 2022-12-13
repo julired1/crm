@@ -36,7 +36,7 @@ class Workman extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id','building_id', 'employees_id', 'limit', 'examination', 'education'], 'required'],
+            [['building_id', 'employees_id', 'limit', 'examination', 'education'], 'required'],
             [['building_id', 'employees_id', 'limit'], 'default', 'value' => null],
             [['building_id', 'employees_id', 'limit'], 'integer'],
             [['medical', 'criminal', 'examination'], 'boolean'],
