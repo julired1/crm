@@ -13,6 +13,7 @@ $this->title = 'CRM_ПРОЕКТ';
 
         <p>
         <?= Html::a('Строительные объекты', ['building/index'],['class' =>'btn btn-success']) ?>
+        <?= Html::a('Сотрудники', ['employees/index'],['class' =>'btn btn-success']) ?>
         </p>
     </div>
 
