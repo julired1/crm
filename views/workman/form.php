@@ -5,6 +5,7 @@ use yii\bootstrap5\ActiveForm;
 /** @var yii\web\View $this */
 /** @var app\models\Workman $model */
 /** @var yii\widgets\ActiveForm $form */
+/** @var @Buildings array*/
 
 $this->title = $model -> isNewRecord ?  'Добавить рабочего ': 'Изменить рабочего';
 $this->params['breadcrumbs'][] = ['label' => 'Рабочие', 'url' => ['index']];
@@ -18,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'building_id')->textInput() ?>
+        <?= $form->field($model, 'building_id')->dropDownList([$Building]) ?>
 
         <?= $form->field($model, 'employees_id')->textInput() ?>
 

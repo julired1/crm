@@ -86,4 +86,11 @@ class Building extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Workman::class, ['building_id' => 'id']);
     }
+    public static function getList(): array{
+        $models = self::find()->orderBy('title')->all();
+        foreach($models as $model){
+            $list[$model->id] = $model->title;   
+        }
+        return $list;
+    }
 }

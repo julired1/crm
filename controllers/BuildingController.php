@@ -76,9 +76,10 @@ class BuildingController extends Controller
         } else {
             $model->loadDefaultValues();
         }
-
+        
         return $this->render('form', [
             'model' => $model,
+            
         ]);
     }
 

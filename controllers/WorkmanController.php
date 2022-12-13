@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Workman;
+use app\models\Building;
 use app\models\WorkmanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -44,6 +45,7 @@ class WorkmanController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'Building' => Building::getList(),
         ]);
     }
 
@@ -79,6 +81,7 @@ class WorkmanController extends Controller
 
         return $this->render('form', [
             'model' => $model,
+            'Building' => Building::getList(),
         ]);
     }
 
@@ -99,6 +102,7 @@ class WorkmanController extends Controller
 
         return $this->render('form', [
             'model' => $model,
+            'Building' => Building::getList(),
         ]);
     }
 

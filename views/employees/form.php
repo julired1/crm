@@ -6,6 +6,7 @@ use yii\bootstrap5\ActiveForm;
 /** @var yii\web\View $this */
 /** @var app\models\Employees $model */
 /** @var yii\widgets\ActiveForm $form */
+
 $this->title = $model -> isNewRecord ?  'Создать объект ': 'Изменить объект';
 $this->params['breadcrumbs'][] = ['label' => 'Сотрудники', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

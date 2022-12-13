@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\WorkmanSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var @buldings array*/
 
 $this->title = 'Рабочие';
 $this->params['breadcrumbs'][] = $this->title;
@@ -29,8 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
-            'building_id',
+            [
+                'attribute' => 'building_id',
+                'value' => 'building.title',
+                'filter'=> $Building,
+                
+            ],
             'employees_id',
             'medical:boolean',
             'naks',
@@ -41,9 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'education:ntext',
             [
                 'class' => ActionColumn::class,
-                'urlCreator' => function ($action, Workman $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
             ],
         ],
     ]); ?>
