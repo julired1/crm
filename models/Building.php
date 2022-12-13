@@ -48,12 +48,12 @@ class Building extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'region' => 'Region',
-            'trials' => 'Trials',
-            'status' => 'Status',
-            'phone' => 'Phone',
+            'id' => 'Код',
+            'title' => 'Наименование',
+            'region' => 'Регион',
+            'trials' => 'Суд.Процессы',
+            'status' => 'Статус',
+            'phone' => 'Телефон',
         ];
     }
 
