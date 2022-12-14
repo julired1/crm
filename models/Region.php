@@ -41,4 +41,11 @@ class Region extends \yii\db\ActiveRecord
             'name' => 'Name',
         ];
     }
+    public static function getList(): array{
+    $models = self::find()->orderBy('name')->all();
+    foreach($models as $model){
+        $list[$model->id] = $model->name;   
+        }
+    return $list;
+    }
 }

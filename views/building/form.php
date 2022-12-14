@@ -6,6 +6,7 @@ use yii\bootstrap5\ActiveForm;
 /** @var yii\web\View $this */
 /** @var app\models\Building $model */
 /** @var yii\widgets\ActiveForm $form */
+/** @var @Regions array*/
 
 $this->title = $model -> isNewRecord ?  'Создать объект ': 'Изменить объект';
 $this->params['breadcrumbs'][] = ['label' => 'Строительные объекты', 'url' => ['index']];
@@ -22,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'title')->textarea(['rows' => 1]) ?>
 
-        <?= $form->field($model, 'region')->textInput() ?>
+        <?= $form->field($model, 'region')->dropDownList([$regions]) ?>
 
         <?= $form->field($model, 'trials')->checkbox() ?>
 

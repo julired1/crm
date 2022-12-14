@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'employees_id',
             'name',
-            'email:ntext',
+            'email:email',
             'password',
             [
                 'class' => ActionColumn::class,

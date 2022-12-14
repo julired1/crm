@@ -34,6 +34,7 @@ class Identification extends \yii\db\ActiveRecord
             [['employees_id'], 'integer'],
             [['name'], 'required'],
             [['email'], 'string'],
+            [['email'],'email'],
             [['name', 'password'], 'string', 'max' => 255],
             [['employees_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employees::class, 'targetAttribute' => ['employees_id' => 'id']],
         ];

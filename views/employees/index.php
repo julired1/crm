@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'examination:boolean',
             'criminal:boolean',
             'status',
-            'email:ntext',
+            'email:email',
             'birthday',
             'phone',
             'medical:boolean',

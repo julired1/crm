@@ -49,6 +49,7 @@ class Employees extends \yii\db\ActiveRecord
             [['type', 'region', 'status', 'phone'], 'integer'],
             [['naks', 'birthday', 'worktime'], 'safe'],
             [['speciality', 'email', 'education'], 'string'],
+            [['email'],'email'],
             [['examination', 'criminal', 'medical'], 'boolean'],
             [['name'], 'string', 'max' => 150],
         ];

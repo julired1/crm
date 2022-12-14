@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\BuildingSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var @regions array*/
 
 $this->title = 'Строительные объекты';
 $this->params['breadcrumbs'][] = $this->title;
@@ -30,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'title:ntext',
-            'region',
+            [
+                'attribute' => 'region',
+                'filter'=>$regions,
+            ],
             'trials:boolean',
             'status',
             'phone',

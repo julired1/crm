@@ -37,7 +37,7 @@ class Building extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['title'], 'string'],
             [['region', 'status', 'phone'], 'default', 'value' => null],
-            [['region', 'status', 'phone'], 'integer'],
+            [['region', 'status','phone'], 'integer'],
             [['trials'], 'boolean'],
         ];
     }
