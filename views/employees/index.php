@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\EmployeesSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var @regions array*/
 
 $this->title = 'Сотрудники';
 $this->params['breadcrumbs'][] = $this->title;
@@ -33,14 +34,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'type',
             'naks',
             'speciality:ntext',
-            'region',
+            [
+                'attribute' => 'region',
+                'value' => function(Employees $model) use($regions) {
+                    return $model->regionObj->name;
+                },
+                'filter'=>$regions,
+            ],
             'examination:boolean',
             //'criminal:boolean',
             [
                 'attribute' => 'criminal',
                 'visible' => $searchModel->type == 1,
             ],
-            'status',
+            [
+                'attribute' => 'status',
+                'filter'=>[1 =>'Активный', 2=>'Завершен',4=> 'На проверке'],
+            ],
             'email:email',
             'birthday',
             'phone',

@@ -23,11 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'title')->textarea(['rows' => 1]) ?>
 
-        <?= $form->field($model, 'region')->dropDownList([$regions]) ?>
+        <?= $form->field($model, 'region')->dropDownLis ('region') ?>
 
         <?= $form->field($model, 'trials')->checkbox() ?>
 
-        <?= $form->field($model, 'status')->textInput() ?>
+        <?= $form->field($model, 'status')->dropDownList ([1 =>'Работает', 2=>'Уволен',3=>'Межвахта',4=> 'На проверке']);
+            ?>
 
         <?= $form->field($model, 'phone')->textInput() ?>
 

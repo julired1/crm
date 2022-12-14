@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'trials:boolean',
             [
                 'attribute' => 'status',
-                'filter'=>[1 =>'test', 2=>'test2',3=>'test3'],
+                'filter'=>[1 =>'Работает', 2=>'Уволен',3=>'Межвахта',4=> 'На проверке'],
             ],
             'phone',
             [

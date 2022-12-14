@@ -27,6 +27,7 @@ use Yii;
  * @property Identification[] $identifications
  * @property Payroll[] $payrolls
  * @property Workman[] $workmen
+ * @property Region $regionObj
  */
 class Employees extends \yii\db\ActiveRecord
 {
@@ -45,8 +46,8 @@ class Employees extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'type', 'birthday'], 'required'],
-            [['type', 'region', 'status', 'phone'], 'default', 'value' => null],
-            [['type', 'region', 'status', 'phone'], 'integer'],
+            [['region', 'status', 'phone'], 'default', 'value' => null],
+            [['region', 'status', 'phone'], 'integer'],
             [['naks', 'birthday', 'worktime'], 'safe'],
             [['speciality', 'email', 'education'], 'string'],
             [['email'],'email'],

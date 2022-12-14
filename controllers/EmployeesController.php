@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Employees;
+use app\models\Region;
 use app\models\EmployeesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -44,6 +45,7 @@ class EmployeesController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'regions' => Region::getList(),
         ]);
     }
 
@@ -79,6 +81,7 @@ class EmployeesController extends Controller
 
         return $this->render('form', [
             'model' => $model,
+            'regions' => Region::getList(),
         ]);
     }
 
@@ -99,6 +102,7 @@ class EmployeesController extends Controller
 
         return $this->render('form', [
             'model' => $model,
+            'regions' => Region::getList(),
         ]);
     }
 
