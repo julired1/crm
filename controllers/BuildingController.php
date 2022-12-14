@@ -1,7 +1,6 @@
 <?php
 
 namespace app\controllers;
-
 use app\models\Building;
 use app\models\Region;
 use app\models\BuildingSearch;

@@ -35,7 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'speciality:ntext',
             'region',
             'examination:boolean',
-            'criminal:boolean',
+            //'criminal:boolean',
+            [
+                'attribute' => 'criminal',
+                'visible' => $searchModel->type == 1,
+            ],
             'status',
             'email:email',
             'birthday',

@@ -33,10 +33,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'title:ntext',
             [
                 'attribute' => 'region',
+                'value' => function(Building $model) use($regions) {
+                    return $model->regionObj->name;
+                },
                 'filter'=>$regions,
             ],
             'trials:boolean',
-            'status',
+            [
+                'attribute' => 'status',
+                'filter'=>[1 =>'test', 2=>'test2',3=>'test3'],
+            ],
             'phone',
             [
                 'class' => ActionColumn::class, 
