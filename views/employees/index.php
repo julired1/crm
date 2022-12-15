@@ -32,7 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'name',
             'type',
-            'naks',
+ 
+             //'naks:boolean',
+            [
+                'attribute' => 'naks:boolean',
+                'visible' => $searchModel->type == 1,
+            ],
             'speciality:ntext',
             [
                 'attribute' => 'region',
@@ -54,9 +59,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'birthday',
             'phone',
-            'medical:boolean',
-            'education:ntext',
-            'worktime',
+                         //'medical:boolean',
+            [
+                'attribute' => 'medical:boolean',
+                'visible' => $searchModel->type == 1,
+            ],
+                         //'education:ntext',
+            [
+                'attribute' => 'education:ntext',
+                'visible' => $searchModel->type == 1,
+            ],
+                          //'worktime:time',
+            [
+                'attribute' => 'worktime:time',
+                'visible' => $searchModel->type == 1,
+                'visible' => $searchModel->type == 2,
+            ],
             [
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Employees $model, $key, $index, $column) {

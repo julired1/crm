@@ -13,8 +13,10 @@ $this->title = 'CRM_ПРОЕКТ';
 
         <p>
         <?= Html::a('Строительные объекты', ['building/index'],['class' =>'btn btn-success']) ?>
-        <?= Html::a('Рабочие', ['employees/index', 'EmployeesSearch[type]' =>1],['class' =>'btn btn-success']) ?>
+        <?= Html::a('Сотрудники', ['employees/index', 'EmployeesSearch[type]' =>1],['class' =>'btn btn-success']) ?>
             <?= Html::a('Call центр', ['employees/index', 'EmployeesSearch[type]' =>2],['class' =>'btn btn-success']) ?>
+            <?= Html::a('Административная группа', ['employees/index', 'EmployeesSearch[type]' =>3],['class' =>'btn btn-success']) ?>
+            <?= Html::a('Бухгалтерия', ['employees/index', 'EmployeesSearch[type]' =>4],['class' =>'btn btn-success']) ?>
         <?= Html::a('Рабочие', ['workman/index'],['class' =>'btn btn-success']) ?>
         <?= Html::a('Идентификация', ['identification/index'],['class' =>'btn btn-success']) ?>
         <?= Html::a('Табель зарплат', ['payroll/index'],['class' =>'btn btn-success']) ?>
