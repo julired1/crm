@@ -31,11 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
-            'type',
- 
+            [
+            'attribute' => 'type',
+            'filter' => [1=> 'Рабочие',2=> 'Call центр',3=> 'Административная группа',4=> 'Бухгалтерия',]
+            ],
              //'naks:boolean',
             [
-                'attribute' => 'naks:boolean',
+                'attribute' => 'naks',
                 'visible' => $searchModel->type == 1,
             ],
             'speciality:ntext',
@@ -61,17 +63,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
                          //'medical:boolean',
             [
-                'attribute' => 'medical:boolean',
+                'attribute' => 'medical',
                 'visible' => $searchModel->type == 1,
             ],
-                         //'education:ntext',
+                         //'education:boolean',
             [
-                'attribute' => 'education:ntext',
+                'attribute' => 'education',
                 'visible' => $searchModel->type == 1,
             ],
                           //'worktime:time',
             [
-                'attribute' => 'worktime:time',
+                'attribute' => 'worktime',
                 'visible' => $searchModel->type == 1,
                 'visible' => $searchModel->type == 2,
             ],

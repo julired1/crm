@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'type')->textInput() ?>
+        <?= $form->field($model, 'type')->dropDownLis ([1=> 'Рабочие',2=> 'Call центр',3=> 'Административная группа',4=> 'Бухгалтерия',]) ?>
 
         <?= $form->field($model, 'naks')->textInput() ?>
 
