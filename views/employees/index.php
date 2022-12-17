@@ -41,7 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'naks',
                 'visible' => $searchModel->type == 1,
             ],
-            'is_admin:boolean',
             'speciality:ntext',
             [
                 'attribute' => 'region',

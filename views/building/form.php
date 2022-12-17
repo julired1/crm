@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'title')->textarea(['rows' => 1]) ?>
 
-        <?= $form->field($model, 'region')->dropDownList([$regions]) ?>
+        <?= $form->field($model, 'region')->dropDownLis ('region') ?>
 
         <?= $form->field($model, 'trials')->checkbox() ?>
 

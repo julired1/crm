@@ -1,55 +1,37 @@
 <?php
 
 namespace app\models;
-use app\models\User;
+use app\models\Employees;
 use Yii;
 
 class Useridentity extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
-    public $employeesname;
+    public $emploueesname;
     public $password;
     public $authKey;
     public $accessToken;
     
      /**
      * Текущий пользователь
-     * @var User
+     * @var Employees
      */
-    public $employees;    
+    public $emplouees;    
     
-    protected static function createIdentity(Employees $employees): UserIdentity {
-        $identity = new EmployeesIdentity();
-        $identity->id = $employees->id;
-        $identity->employeesname = $employees->email;
-        $identity->employees = $employees;
+    protected static function createIdentity(User $emplouees): UserIdentity {
+        $identity = new EmploueesIdentity();
+        $identity->id = $emplouees->id;
+        $identity->emploueesname = $emplouees->email;
+        $identity->emplouees = $emplouees;
     return $identity;}
-
-    private static $emploueess = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
 
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        $employees = Employees::findOne($id);
-        return $employees ? self::createIdentity($employees) : null;
+        $emplouees = User::findOne($id);
+        return $emplouees ? self::createIdentity($emplouees) : null;
        
     }
 
@@ -58,19 +40,27 @@ class Useridentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
+        foreach (self::$emploueess as $emplouees) {
+            if ($emplouees['accessToken'] === $token) {
+                return new static($emplouees);
+            }
+        }
+
         return null;
     }
 
     /**
-     * Finds user by employeesname
+     * Finds user by emploueesname
      *
-     * @param string $employeesname
+     * @param string $emploueesname
      * @return static|null
      */
-    public static function findByUsername($employeesname)
+    public static function findByUsername($emploueesname)
     {
-               $employees = Employees::findOne(['email' => $employeesname]);
-        return $employees ? self::createIdentity($employees) : null;   
+               $emplouees = User::findOne(['email' => $emploueesname]);
+        return $emplouees ? self::createIdentity($emplouees) : null;
+        
+        
         return null;
     }
 
@@ -106,6 +96,6 @@ class Useridentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
      */
     public function validatePassword($password)
     {
-         return Yii::$app->security->validatePassword($password, $this->employees->password_hash);        
+         return Yii::$app->security->validatePassword($password, $this->emplouees->password_hash);        
     }
 }
