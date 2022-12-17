@@ -22,6 +22,8 @@ use Yii;
  * @property bool|null $medical Медицинский осмотр
  * @property string|null $education Образование
  * @property string|null $worktime Рабочее время
+ * @property string $password_hash
+ * @property boolean $is_admin;
  *
  * @property Cost[] $costs
  * @property Identification[] $identifications
@@ -31,6 +33,11 @@ use Yii;
  */
 class Employees extends \yii\db\ActiveRecord
 {
+    const TYPE_ADMIN=1;
+    const TYPE_TEACHER =2;
+    const TYPE_STUDENT=3;
+    
+    public $password;
     /**
      * {@inheritdoc}
      */
@@ -42,16 +49,24 @@ class Employees extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function beforeValidate() {
+        if($this->password) {
+            $this->password_hash = Yii::$app->security->generatePasswordHash($this->password);            
+        }
+        return parent::beforeValidate();
+    }
+
     public function rules()
     {
         return [
-            [['name', 'type', 'birthday'], 'required'],
+            [['name', 'type', 'birthday', 'is_admin'], 'required'],
             [['region', 'status', 'phone'], 'default', 'value' => null],
+            [['password'],'string','max'=>20],
             [['region', 'status', 'phone'], 'integer'],
             [['naks', 'birthday', 'worktime'], 'safe'],
-            [['speciality', 'email', 'education'], 'string'],
+            [['speciality', 'email', 'education','password_hash'], 'string'],
             [['email'],'email'],
-            [['examination', 'criminal', 'medical'], 'boolean'],
+            [['examination', 'criminal', 'medical','is_admin'], 'boolean'],
             [['name'], 'string', 'max' => 150],
         ];
     }
@@ -64,6 +79,9 @@ class Employees extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'ФИО',
+            'password'=>'Пароль',
+            'password_hash' => 'Хеш пароля',
+            'is_admin' => 'Администратор',
             'type' => 'Type',
             'naks' => 'НАКС',
             'speciality' => 'Должность',

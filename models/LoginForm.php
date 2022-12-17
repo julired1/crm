@@ -13,11 +13,11 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $username;
+    public $employeesname;
     public $password;
     public $rememberMe = true;
 
-    private $_user = false;
+    private $_employeesIdentity = false;
 
 
     /**
@@ -34,6 +34,13 @@ class LoginForm extends Model
             ['password', 'validatePassword'],
         ];
     }
+    public function attributeLabels(): array {
+        return [
+            'username' => 'Email',
+            'password' => 'Пароль',
+            'rememberMe' => 'Запомнить меня',
+        ];
+    }
 
     /**
      * Validates the password.
@@ -45,10 +52,10 @@ class LoginForm extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
+            $employeesIdentity = $this->getUserIdentity();
 
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+            if (!$employeesIdentity || !$employeesIdentity->validatePassword($this->password)) {
+                $this->addError($attribute, 'У вас неправильный эмайл или пароль.');
             }
         }
     }
@@ -60,22 +67,22 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->user->login($this->getUserIdentity(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
-    }
+    }   
 
     /**
      * Finds user by [[username]]
      *
      * @return User|null
      */
-    public function getUser()
+    public function getUserIdentity()
     {
-        if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+        if ($this->_employeesIdentity === false) {
+            $this->_employeesIdentity = Employees::findByUsername($this->employeesname);
         }
 
-        return $this->_user;
+        return $this->_employeesIdentity;
     }
 }

@@ -8,6 +8,8 @@ use app\models\EmployeesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Yii;
 
 /**
  * EmployeesController implements the CRUD actions for Employees model.
@@ -15,14 +17,14 @@ use yii\filters\VerbFilter;
 class EmployeesController extends Controller
 {
      private function getUser() :?User {
-        return Yii::$app->emplouees->isGuest ? null : Yii::$app->emplouees->identity->emplouees;
+        return Yii::$app->employees->isGuest ? null : Yii::$app->employees->identity->employees;
     }
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
-        $emplouees = $this->getEmplouees();
+        $emplouees = $this->getUser();
         return array_merge(
             parent::behaviors(),
             [
@@ -32,8 +34,8 @@ class EmployeesController extends Controller
                         [
                             //'actions' => ['index'],
                             'allow' => true,
-                            'matchCallback' => function() use($emplouees) {
-                                return $emplouees->is_admin;                                
+                            'matchCallback' => function() use($employees) {
+                                return $employees->is_admin;                                
                             },
                             'roles' => ['@'],
                         ],
