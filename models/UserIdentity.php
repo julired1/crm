@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-use app\models\User;
+use app\models\Employees;
 use Yii;
 
 class Useridentity extends \yii\base\BaseObject implements \yii\web\IdentityInterface
@@ -14,7 +14,7 @@ class Useridentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
     
      /**
      * Текущий пользователь
-     * @var User
+     * @var Employees
      */
     public $emplouees;    
     
@@ -24,24 +24,6 @@ class Useridentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
         $identity->emploueesname = $emplouees->email;
         $identity->emplouees = $emplouees;
     return $identity;}
-
-    private static $emploueess = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
 
     /**
      * {@inheritdoc}
