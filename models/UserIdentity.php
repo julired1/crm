@@ -1,16 +1,31 @@
 <?php
 
 namespace app\models;
+use app\models\User;
+use Yii;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+class Useridentity extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
-    public $username;
+    public $emploueesname;
     public $password;
     public $authKey;
     public $accessToken;
+    
+     /**
+     * Текущий пользователь
+     * @var User
+     */
+    public $emplouees;    
+    
+    protected static function createIdentity(User $emplouees): UserIdentity {
+        $identity = new EmploueesIdentity();
+        $identity->id = $emplouees->id;
+        $identity->emploueesname = $emplouees->email;
+        $identity->emplouees = $emplouees;
+    return $identity;}
 
-    private static $users = [
+    private static $emploueess = [
         '100' => [
             'id' => '100',
             'username' => 'admin',
@@ -33,7 +48,9 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        $emplouees = User::findOne($id);
+        return $emplouees ? self::createIdentity($emplouees) : null;
+       
     }
 
     /**
@@ -41,9 +58,9 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
+        foreach (self::$emploueess as $emplouees) {
+            if ($emplouees['accessToken'] === $token) {
+                return new static($emplouees);
             }
         }
 
@@ -51,19 +68,17 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     }
 
     /**
-     * Finds user by username
+     * Finds user by emploueesname
      *
-     * @param string $username
+     * @param string $emploueesname
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername($emploueesname)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
+               $emplouees = User::findOne(['email' => $emploueesname]);
+        return $emplouees ? self::createIdentity($emplouees) : null;
+        
+        
         return null;
     }
 
@@ -99,6 +114,6 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+         return Yii::$app->security->validatePassword($password, $this->emplouees->password_hash);        
     }
 }

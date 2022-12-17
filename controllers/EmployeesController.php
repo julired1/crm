@@ -14,14 +14,31 @@ use yii\filters\VerbFilter;
  */
 class EmployeesController extends Controller
 {
+     private function getUser() :?User {
+        return Yii::$app->emplouees->isGuest ? null : Yii::$app->emplouees->identity->emplouees;
+    }
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
+        $emplouees = $this->getEmplouees();
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                     'rules' => [
+                        [
+                            //'actions' => ['index'],
+                            'allow' => true,
+                            'matchCallback' => function() use($emplouees) {
+                                return $emplouees->is_admin;                                
+                            },
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::class,
                     'actions' => [
@@ -59,6 +76,22 @@ class EmployeesController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+        
+        return $this->render('view', [
+            'model' => $model,
+            'rightIndex' => $this->renderRightIndex($model),
+        ]);
+    }
+        private function renderRightIndex(User $model) {
+        $searchModel = new UserRightSearch();
+        $searchModel->user_id = $model->id;
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->renderPartial('/user-right/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+          
         ]);
     }
 

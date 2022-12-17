@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use app\models\Employees;
 use Yii;
 
 /**
@@ -16,6 +16,26 @@ use Yii;
  */
 class Identification extends \yii\db\ActiveRecord
 {
+    public $id;
+    public $emploueesname;
+    public $password;
+    public $authKey;
+    public $accessToken;
+    /**
+     * Текущий пользователь
+     * @var Emplouees
+     */
+     public $employees;    
+    
+    protected static function createIdentity(User $user): UserIdentity {
+        $identity = new UserIdentity();
+        $identity->id = $emplouees->id;
+        $identity->emploueesname = $emplouees->email;
+        $identity->emplouees = $emplouees;
+        return $identity;
+    }
+    
+    
     /**
      * {@inheritdoc}
      */
