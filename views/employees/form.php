@@ -27,6 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'type')->dropDownList ([1=> 'Рабочие',2=> 'Call центр',3=> 'Административная группа',4=> 'Бухгалтерия',]) ?>
 
         <?= $form->field($model, 'naks')->textInput() ?>
+        
+        <?= $form->field($model, 'password')->passwordInput() ?>
+        
+        <?= $form->field($model, 'is_admin')->checkbox() ?>
 
         <?= $form->field($model, 'speciality')->textarea(['rows' => 6]) ?>
 

@@ -32,6 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'type',
+            'password_hash',
+            'is_admin:boolean',
             'naks',
             'speciality:ntext',
             'region',
@@ -43,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'medical:boolean',
             'education:ntext',
-            'worktime',
+            'worktime'
         ],
     ]) ?>
 
