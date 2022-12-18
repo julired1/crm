@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'type',
-            'password_hash',
             'is_admin:boolean',
             'naks',
             'speciality:ntext',
