@@ -69,13 +69,11 @@ class Workman extends \yii\db\ActiveRecord
         if($this->building && $this->building->status == 1 && $this instanceof Workman) {
             $this->addError('building_id', 'Нельзя назначать на завершенный объект!');
         }
-         if($this->employees->getMenCount() > $this->employees->limit) {
-            $this->addError('employees_id', "Вы не можете принять сотрудника на объект, достигнут
-предел по численности!");
-         }
+         if($this->employees && $this->employees->status == 2 && $this instanceof Workman) {
+            $this->addError('employees_id', 'Сотрудник уволен!');
         return parent::beforeValidate();
     }
-    
+    }    
     
 
     /**

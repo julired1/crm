@@ -60,6 +60,22 @@ class CostController extends Controller
         ]);
     }
 
+    
+    
+    public function actionPublishedProcessesReport(): string {
+$searchModel = new PublishedProjectProcess();
+$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+return $this->render('published-processes', [
+'searchModel' => $searchModel,
+'dataProvider' => $dataProvider,
+'projects' => $this->projectRepository->getList(),
+'users' => $this->userRepository->getList(),
+'processes' => $this->projectProcessRepository->getList(),
+]);
+}
+
+
+
     /**
      * Creates a new Cost model.
      * If creation is successful, the browser will be redirected to the 'view' page.
