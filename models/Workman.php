@@ -65,6 +65,14 @@ class Workman extends \yii\db\ActiveRecord
             'education' => 'Образование',
         ];
     }
+    public function beforeValidate() {
+        if($this->building && $this->building->status == 1 && $this instanceof Workman) {
+            $this->addError('building_id', 'Нельзя назначать на завершенный объект!');
+        }
+        return parent::beforeValidate();
+    }
+    
+    
 
     /**
      * Gets query for [[Building]].
