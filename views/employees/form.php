@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use app\models\Building;
 
 /** @var yii\web\View $this */
 /** @var app\models\Employees $model */
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'speciality')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model, 'region')->dropDownList ('region') ?>
+        <?= $form->field($model, 'region')->dropDownList ([$regions]) ?>
 
         <?= $form->field($model, 'examination')->checkbox() ?>
 

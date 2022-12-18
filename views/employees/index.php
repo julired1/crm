@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'region',
                 'value' => function(Employees $model) use($regions) {
-                    return $model->regionObj->name;
+                    return $model->regionObj? $model->regionObj->name : $model->region;
                 },
                 'filter'=>$regions,
             ],
