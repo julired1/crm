@@ -38,14 +38,16 @@ class CostSearch extends Cost
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-        $query = Cost::find();
-
-        // add conditions that should always apply here
+    public function search(array $params):ActiveDataProvider {
+        $query = new Query();
+        $query
+                ->from(['employees_id' => 'project.project_process'])
+                ->innerJoin(['part' => 'project.cost_table'], 'pp.cost_table_num = part.num')
+                ->innerJoin(['proj' => 'project.cost'], 'employees_id.project_id = proj.id');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => $this->createSort(),
         ]);
 
         $this->load($params);
@@ -53,18 +55,35 @@ class CostSearch extends Cost
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
+            $query->where('0=1');
             return $dataProvider;
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+        $query
+                ->andFilterWhere(['ilike', 'part.code', $this->project_part])
+                ->andFilterWhere([
             'building_id' => $this->building_id,
             'employees_id' => $this->employees_id,
             'product' => $this->product,
             'price' => $this->price,
             'id' => $this->id,
+            
         ]);
+        
 
         return $dataProvider;
     }
 }
+$rows = self::find()->alias('t')
+->joinWith('ideaTags it', false)
+->groupBy('t.id')
+->select('t.id, t.name, count(it.idea_id) c')
+->orderBy('t.name')
+->asArray()
+->all();
+
+$models = Document::find()
+->alias('d')
+->andWhere("d.date_reg is not null")
+->all();

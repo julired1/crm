@@ -63,17 +63,46 @@ class CostController extends Controller
     
     
     public function actionPublishedProcessesReport(): string {
-$searchModel = new PublishedProjectProcess();
-$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-return $this->render('published-processes', [
-'searchModel' => $searchModel,
-'dataProvider' => $dataProvider,
-'projects' => $this->projectRepository->getList(),
-'users' => $this->userRepository->getList(),
-'processes' => $this->projectProcessRepository->getList(),
-]);
-}
+        $searchModel = new CostSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('published-processes', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+        'building' => $this->building->getList(),
+        'employees' => $this->employees->getList(),
+        'processes' => $this->product->getList(),
+        'processes' => $this->price->getList(),
+    ]);
+    
+    
 
+    class PublishedProjectProcess extends Model {
+    /**
+    * @var string|null
+    */
+     public $cost_table;
+    /**
+    * @return array
+    */
+        public function attributeLabels() {
+        return [
+        'id' => 'Номер',
+        'employees_name' => 'Сотрудник',
+        'building_name' => 'Объект',
+        'product' => 'Наименование',
+        'price' => 'Стоимость',
+        'comment' => 'Комментарий',
+    ];
+    }
+    public function rules() {
+       return [
+        [['count_notices', 'count_read_notices', 'count_accesses', 'count_email_send'], 'integer'],
+        [['project_part', 'searchAuthorName'], 'string'],
+        [['isNoActiveUser'], 'boolean'],
+        [['date_start'], 'date', 'format' => 'php:d.m.Y'],
+        [['searchProject', 'searchExecutor'], 'string', 'min' => 1, 'max' => 30],
+        ];
+    }
 
 
     /**
