@@ -88,6 +88,13 @@ class Employees extends \yii\db\ActiveRecord
             'worktime' => 'Рабочее время',
         ];
     }
+        public function beforeValidate() {
+        if($this->employees && $this->employees->status == 2 && $this instanceof Employees) {
+            $this->addError('building_id', 'Сотрудник уволен!');
+            
+        }  
+        return parent::beforeValidate();
+    }
 
     /**
      * Gets query for [[Costs]].
