@@ -22,7 +22,7 @@ class EmployeesController extends Controller
      */
     public function behaviors()
     {
-        $emplouees = $this->getEmplouees();
+        $emplouees = $this->getEmployees();
         return array_merge(
             parent::behaviors(),
             [
@@ -46,7 +46,19 @@ class EmployeesController extends Controller
                     ],
                 ],
             ]
+                                    
         );
+    
+
+            [
+                'verbs' => [
+                    'class' => VerbFilter::class,
+                    'actions' => [
+                        'delete' => ['POST'],
+                    ],
+                ],
+            ]
+        ;
     }
 
     /**
