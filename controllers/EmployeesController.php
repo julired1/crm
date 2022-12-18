@@ -82,13 +82,9 @@ class EmployeesController extends Controller
         $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model,
-            'rightIndex' => $this->renderRightIndex($model),
+            //'rightIndex' => $this->renderRightIndex($model),
         ]);
-        
-        return $this->render('view', [
-            'model' => $model,
-            'rightIndex' => $this->renderRightIndex($model),
-        ]);
+
     }
         private function renderRightIndex(Employees $model) {
         $searchModel = new EmployeesRightSearch();
