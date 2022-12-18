@@ -31,6 +31,11 @@ use Yii;
  */
 class Employees extends \yii\db\ActiveRecord
 {
+    const TYPE_ADMIN = 1;
+    const TYPE_TEACHER = 2;
+    const TYPE_STUDENT = 3;
+    
+    public $password;
     /**
      * {@inheritdoc}
      */
@@ -45,14 +50,15 @@ class Employees extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'type', 'birthday'], 'required'],
+            [['name', 'type', 'birthday','is_admin'], 'required'],
             [['region', 'status', 'phone'], 'default', 'value' => null],
             [['region', 'status', 'phone'], 'integer'],
             [['naks', 'birthday', 'worktime'], 'safe'],
             [['speciality', 'email', 'education'], 'string'],
             [['email'],'email'],
-            [['examination', 'criminal', 'medical'], 'boolean'],
-            [['name'], 'string', 'max' => 150],
+            [['examination', 'criminal', 'medical','is_admin'], 'boolean'],
+            [['password'],'string', 'max' => 20],
+            [['name','password_hash'], 'string', 'max' => 150],
         ];
     }
 
@@ -64,6 +70,9 @@ class Employees extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'ФИО',
+            'password' => 'Пароль',
+            'password_hash' => 'Хеш пароля',
+            'is_admin' => 'Администратор',
             'type' => 'Type',
             'naks' => 'НАКС',
             'speciality' => 'Должность',
