@@ -5,24 +5,28 @@ namespace app\controllers;
 use app\models\Employees;
 use app\models\Region;
 use app\models\EmployeesSearch;
+use app\models\EmployeesRight;
+use app\models\EmployeesRightSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Yii;
 
 /**
  * EmployeesController implements the CRUD actions for Employees model.
  */
 class EmployeesController extends Controller
 {
-     private function getUser() :?User {
-        return Yii::$app->emplouees->isGuest ? null : Yii::$app->emplouees->identity->emplouees;
+     private function getEmployees() :?Employees {
+        return Yii::$app->user->isGuest ? null : Yii::$app->user->identity->employees;
     }
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
-        $emplouees = $this->getEmployees();
+        $employees = $this->getEmployees();
         return array_merge(
             parent::behaviors(),
             [
@@ -32,8 +36,8 @@ class EmployeesController extends Controller
                         [
                             //'actions' => ['index'],
                             'allow' => true,
-                            'matchCallback' => function() use($emplouees) {
-                                return $emplouees->is_admin;                                
+                            'matchCallback' => function() use($employees) {
+                                return $employees->is_admin;                                
                             },
                             'roles' => ['@'],
                         ],
@@ -48,17 +52,6 @@ class EmployeesController extends Controller
             ]
                                     
         );
-    
-
-            [
-                'verbs' => [
-                    'class' => VerbFilter::class,
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        ;
     }
 
     /**
@@ -86,8 +79,10 @@ class EmployeesController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'rightIndex' => $this->renderRightIndex($model),
         ]);
         
         return $this->render('view', [
@@ -95,14 +90,15 @@ class EmployeesController extends Controller
             'rightIndex' => $this->renderRightIndex($model),
         ]);
     }
-        private function renderRightIndex(User $model) {
-        $searchModel = new UserRightSearch();
-        $searchModel->user_id = $model->id;
+        private function renderRightIndex(Employees $model) {
+        $searchModel = new EmployeesRightSearch();
+        $searchModel->employees_id = $model->id;
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->renderPartial('/user-right/index', [
+        return $this->renderPartial('/employees-right/index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'types' => EmployeesRight::getTypeList(),
           
         ]);
     }
