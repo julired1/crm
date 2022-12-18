@@ -22,7 +22,8 @@ use Yii;
  * @property bool|null $medical Медицинский осмотр
  * @property string|null $education Образование
  * @property string|null $worktime Рабочее время
- *
+ * @property bool|null $is_admin Администратор
+ *  *
  * @property Cost[] $costs
  * @property Identification[] $identifications
  * @property Payroll[] $payrolls
@@ -87,13 +88,17 @@ class Employees extends \yii\db\ActiveRecord
             'education' => 'Образование',
             'worktime' => 'Рабочее время',
         ];
-    }
-
+    } 
     /**
      * Gets query for [[Costs]].
      *
      * @return \yii\db\ActiveQuery
      */
+    public function getRegionObj()
+    {
+        return $this->hasOne(Region::class, ['id' => 'region']);
+    }
+
     public function getCosts()
     {
         return $this->hasMany(Cost::class, ['employees_id' => 'id']);
@@ -128,4 +133,5 @@ class Employees extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Workman::class, ['employees_id' => 'id']);
     }
+    
 }
