@@ -70,41 +70,12 @@ class CostController extends Controller
         'dataProvider' => $dataProvider,
         'building' => $this->building->getList(),
         'employees' => $this->employees->getList(),
-        'processes' => $this->product->getList(),
-        'processes' => $this->price->getList(),
+        'product' => $this->product->getList(),
+        'price' => $this->price->getList(),
     ]);
-    
-    
 
-    class PublishedProjectProcess extends Model {
-    /**
-    * @var string|null
-    */
-     public $cost_table;
-    /**
-    * @return array
-    */
-        public function attributeLabels() {
-        return [
-        'id' => 'Номер',
-        'employees_name' => 'Сотрудник',
-        'building_name' => 'Объект',
-        'product' => 'Наименование',
-        'price' => 'Стоимость',
-        'comment' => 'Комментарий',
-    ];
+        
     }
-    public function rules() {
-       return [
-        [['count_notices', 'count_read_notices', 'count_accesses', 'count_email_send'], 'integer'],
-        [['project_part', 'searchAuthorName'], 'string'],
-        [['isNoActiveUser'], 'boolean'],
-        [['date_start'], 'date', 'format' => 'php:d.m.Y'],
-        [['searchProject', 'searchExecutor'], 'string', 'min' => 1, 'max' => 30],
-        ];
-    }
-
-
     /**
      * Creates a new Cost model.
      * If creation is successful, the browser will be redirected to the 'view' page.

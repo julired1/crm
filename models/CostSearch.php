@@ -5,6 +5,8 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Cost;
+use app\models\CostSearch;
+
 
 /**
  * CostSearch represents the model behind the search form of `app\models\Cost`.
@@ -41,8 +43,8 @@ class CostSearch extends Cost
     public function search(array $params):ActiveDataProvider {
         $query = new Query();
         $query
-                ->from(['employees_id' => 'project.project_process'])
-                ->innerJoin(['part' => 'project.cost_table'], 'pp.cost_table_num = part.num')
+                ->from(['employees_id' => 'employees.employees_name'])
+                ->innerJoin(['cost_table' => 'employees_id.cost_table'], 'employees.cost_table_num = part.num')
                 ->innerJoin(['proj' => 'project.cost'], 'employees_id.project_id = proj.id');
 
         $dataProvider = new ActiveDataProvider([
@@ -75,15 +77,8 @@ class CostSearch extends Cost
         return $dataProvider;
     }
 }
-$rows = self::find()->alias('t')
-->joinWith('ideaTags it', false)
-->groupBy('t.id')
-->select('t.id, t.name, count(it.idea_id) c')
-->orderBy('t.name')
-->asArray()
-->all();
+$rows = cost::find()->alias('Cost_table')
+;
 
-$models = Document::find()
-->alias('d')
-->andWhere("d.date_reg is not null")
-->all();
+$models = cost::find()
+;

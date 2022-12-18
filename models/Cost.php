@@ -22,7 +22,7 @@ class Cost extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'cost';
+        return 'cost_table';
     }
 
     /**
@@ -73,4 +73,5 @@ class Cost extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Employees::class, ['id' => 'employees_id']);
     }
+    
 }
