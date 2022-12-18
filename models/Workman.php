@@ -70,7 +70,7 @@ class Workman extends \yii\db\ActiveRecord
             $this->addError('building_id', 'Нельзя назначать на завершенный объект!');
         }
          if($this->employees->getMenCount() > $this->employees->limit) {
-            $this->addError('employees_id', "Вы не можете принять сотрудника на этот объект, достигнут
+            $this->addError('employees_id', "Вы не можете принять сотрудника на объект, достигнут
 предел по численности!");
          }
         return parent::beforeValidate();
