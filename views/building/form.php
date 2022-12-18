@@ -26,9 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'region')->dropDownList ([$regions]) ?>
 
         <?= $form->field($model, 'trials')->checkbox() ?>
-
-        <?= $form->field($model, 'status')->dropDownList ([1 =>'Работает', 2=>'Уволен',3=>'Межвахта',4=> 'На проверке']);
-            ?>
+        
+        <?= $form->field($model, 'status')->dropDownList([1 =>'Активный', 2=>'Завершен',3=> 'На проверке']) ?>
 
         <?= $form->field($model, 'phone')->textInput() ?>
 

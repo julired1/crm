@@ -40,9 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'examination')->checkbox() ?>
 
         <?= $form->field($model, 'criminal')->checkbox() ?>
-
-        <?= $form->field($model, 'status')->dropDownList([1 =>'Активный', 2=>'Завершен',3=> 'На проверке']) ?>
-
+        
+        <?= $form->field($model, 'status')->dropDownList ([1 =>'Работает', 2=>'Уволен',3=>'Межвахта',4=> 'На проверке']);?>
+        
         <?= $form->field($model, 'email')->textarea(['rows' => 6]) ?>
 
         <?= $form->field($model, 'birthday')->textInput() ?>
