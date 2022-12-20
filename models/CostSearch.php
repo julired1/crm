@@ -41,12 +41,10 @@ class CostSearch extends Cost
      * @return ActiveDataProvider
      */
     public function search(array $params):ActiveDataProvider {
-        $query = new Query();
+        $query = Cost::find();
         $query
-                ->from(['employees_id' => 'employees.employees_name'])
-                ->innerJoin(['cost_table' => 'employees_id.cost_table'], 'employees.cost_table_num = part.num')
-                ->innerJoin(['proj' => 'project.cost'], 'employees_id.project_id = proj.id');
-
+                ->from(['employees_id' => 'employees.employees_name']);
+  
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => $this->createSort(),
@@ -63,7 +61,6 @@ class CostSearch extends Cost
 
         // grid filtering conditions
         $query
-                ->andFilterWhere(['ilike', 'part.code', $this->project_part])
                 ->andFilterWhere([
             'building_id' => $this->building_id,
             'employees_id' => $this->employees_id,
@@ -72,13 +69,9 @@ class CostSearch extends Cost
             'id' => $this->id,
             
         ]);
-        
+        $models = $query->all();
 
         return $dataProvider;
     }
 }
-$rows = cost::find()->alias('Cost_table')
-;
 
-$models = cost::find()
-;
