@@ -40,22 +40,34 @@ class CostSearch extends Cost
      *
      * @return ActiveDataProvider
      */
+    public $searchCost;
     public function search(array $params):ActiveDataProvider {
-        $query = Cost::find();
+        $query = new Query();
         $query
-                ->from(['employees_id' => 'employees.employees_name']);
+                ->from(['cost' => employees.employees_id]);
   
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => $this->createSort(),
+            'sort' => [
+                'defaultOrder' => ['updated_at' => SORT_DESC],
+                'params' => \Yii::$app->getRequest()->post(),
+                'attributes' => [
+                    'building_id',
+                    'employees_id',
+                    'price',
+                    'product',
+                ],
+            ],
+            'pagination' => [
+            ]
         ]);
+
 
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            $query->where('0=1');
             return $dataProvider;
         }
 

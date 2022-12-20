@@ -22,7 +22,7 @@ class Cost extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'cost_table';
+        return 'cost';
     }
 
     /**
