@@ -13,6 +13,7 @@ use yii\widgets\Pjax;
 
 $this->title = 'Сотрудники';
 $this->params['breadcrumbs'][] = $this->title;
+$statuses = [1 =>'Активный', 2=>'Завершен',4=> 'На проверке'];
 ?>
 <div class="employees-index">
 
@@ -58,10 +59,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'status',
-                'filter'=>[1 =>'Активный', 2=>'Завершен',4=> 'На проверке'],
+                'value' => function(Employees $model) use($statuses) {
+                    return isset($statuses[$model->status]) ? $statuses[$model->status] : $model->status;
+                },
+                'filter'=> $statuses
             ],
             'email:email',
-            'birthday',
+            'birthday:date',
             'phone',
                          //'medical:boolean',
             [

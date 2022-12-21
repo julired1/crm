@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\CostSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var @building array*/
 
 $this->title = 'Табель затрат';
 $this->params['breadcrumbs'][] = $this->title;
@@ -30,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'building_id',
+            [
+                'attribute' => 'building_id',
+                'value' => function(Cost $model) use($building) {
+                    return $model->buildingObj? $model->buildingObj->name : $model->building;
+                },
+                'filter'=>$building,
+            ],
             'employees_id',
             'product',
             'price',
