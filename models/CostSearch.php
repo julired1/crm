@@ -40,11 +40,14 @@ class CostSearch extends Cost
      *
      * @return ActiveDataProvider
      */
+
     public $searchCost;
     public function search(array $params):ActiveDataProvider {
+                    $query = Cost::find();
+
         $query = new Query();
         $query
-                ->from(['cost' => employees.employees_id]);
+                ->from();
   
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

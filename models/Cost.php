@@ -14,6 +14,11 @@ use Yii;
  *
  * @property Building $building
  * @property Employees $employees
+ * @property Cost[] $costs
+ * @property Cost[] $costsearch
+ * @property CostSearch::search(array $params)
+
+
  */
 class Cost extends \yii\db\ActiveRecord
 {
@@ -73,5 +78,13 @@ class Cost extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Employees::class, ['id' => 'employees_id']);
     }
-    
+      public function getCosts()
+    {
+        return $this->hasMany(Cost::class, ['employees_id' => 'id']);
+    }
+
+    public function search()
+    {
+        return $this->hasMany(CostSearch::search, ['Cost' => 'id']);
+}
 }
