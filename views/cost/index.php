@@ -4,7 +4,8 @@ use app\models\Cost;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\CostSearch $searchModel */
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'building_id',
                 'value' => function(Cost $model) use($building) {
-                    return $model->buildingObj? $model->buildingObj->name : $model->building;
+                    return $model->buildingObj? $model->buildingObj->title : $model->building;
                 },
                 'filter'=>$building,
             ],
@@ -48,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                  }
             ],
         ],
+        'layout' => "{summary}\n{export}\n{items}\n{pager}",
     ]); ?>
 
     <?php Pjax::end(); ?>

@@ -49,18 +49,6 @@ class CostSearch extends Cost
   
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => [
-                'defaultOrder' => ['updated_at' => SORT_DESC],
-                'params' => \Yii::$app->getRequest()->post(),
-                'attributes' => [
-                    'building_id',
-                    'employees_id',
-                    'price',
-                    'product',
-                ],
-            ],
-            'pagination' => [
-            ]
         ]);
 
 

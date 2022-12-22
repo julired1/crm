@@ -121,6 +121,8 @@ class CostController extends Controller
             'building' => Building::getList(),
         ]);
     }
+    
+    
 
     /**
      * Deletes an existing Cost model.
@@ -151,4 +153,6 @@ class CostController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
+    
 }
