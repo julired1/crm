@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use app\models\Building;
+use app\controllers\BuildingController;
+/** @var @regions array*/
 /** @var yii\web\View $this */
 /** @var app\models\Building $model */
 
@@ -10,6 +12,7 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Строительные объекты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+$statuses = [1 =>'Активный', 2=>'Завершен',4=> 'На проверке'];
 ?>
 <div class="building-view">
 
@@ -31,9 +34,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title:ntext',
-            'region',
+            [
+                'attribute'=>'region',
+                'value' => function(Building $model) use($regions) {
+                return $model->regionObj->name;
+                },
+                
+            ],
+            'limit',
             'trials:boolean',
-            'status',
+            [
+                'attribute'=>'status',
+                'value' => function(Building $model) use($statuses) {
+                    return isset($statuses[$model->status]) ? $statuses[$model->status] : $model->status;
+                },
+                
+            ],
             'phone',
         ],
     ]) ?>

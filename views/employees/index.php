@@ -13,7 +13,7 @@ use yii\widgets\Pjax;
 
 $this->title = 'Сотрудники';
 $this->params['breadcrumbs'][] = $this->title;
-$statuses = [1 =>'Активный', 2=>'Завершен',4=> 'На проверке'];
+$statuses = [1 =>'Работает', 2=>'Уволен',3=> 'Межва хта',4=> 'На проверке'];
 ?>
 <div class="employees-index">
 
@@ -40,6 +40,7 @@ $statuses = [1 =>'Активный', 2=>'Завершен',4=> 'На прове�
              //'naks:boolean',
             [
                 'attribute' => 'naks',
+                'format'=>'date',
                 'visible' => $searchModel->type == 1,
             ],
             'is_admin:boolean',
@@ -67,7 +68,7 @@ $statuses = [1 =>'Активный', 2=>'Завершен',4=> 'На прове�
             'email:email',
             'birthday:date',
             'phone',
-                         //'medical:boolean',
+            'medical:boolean',
             [
                 'attribute' => 'medical',
                 'visible' => $searchModel->type == 1,

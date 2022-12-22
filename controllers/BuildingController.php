@@ -58,6 +58,7 @@ class BuildingController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'regions' => Region::getList(),
         ]);
     }
 

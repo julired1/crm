@@ -14,11 +14,12 @@ class m221209_230503_create_building_table extends Migration
     {
         $this->createTable('{{%building}}', [
             'id' => $this->primaryKey(),
+            'limit'=>$this->smallInteger(10),
             'title' => $this->text()->notNull(),
             'region' => $this->integer(100),
             'trials' => $this->boolean(),
             'status' => $this->smallInteger(10),
-            'phone' => $this->bigInteger(),
+            'phone' => $this->text(),
         ]);
     }
 

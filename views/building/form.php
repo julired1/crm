@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use yii\widgets\MaskedInput;
 
 /** @var yii\web\View $this */
 /** @var app\models\Building $model */
@@ -27,9 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'trials')->checkbox() ?>
         
+        <?= $form->field($model, 'limit')->textInput() ?>
+        
         <?= $form->field($model, 'status')->dropDownList([1 =>'Активный', 2=>'Завершен',3=> 'На проверке']) ?>
-
-        <?= $form->field($model, 'phone')->textInput() ?>
+        
+        <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::class, [
+    'mask' => '+7-(999)-999-99-99',]) ?>
 
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

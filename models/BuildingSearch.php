@@ -17,8 +17,8 @@ class BuildingSearch extends Building
     public function rules()
     {
         return [
-            [['id', 'region', 'status', 'phone'], 'integer'],
-            [['title'], 'safe'],
+            [['id', 'region', 'status','limit'], 'integer'],
+            [['title','phone'], 'safe'],
             [['trials'], 'boolean'],
         ];
     }
@@ -64,6 +64,7 @@ class BuildingSearch extends Building
             'trials' => $this->trials,
             'status' => $this->status,
             'phone' => $this->phone,
+            'limit'=> $this->limit,
         ]);
 
         $query->andFilterWhere(['ilike', 'title', $this->title]);

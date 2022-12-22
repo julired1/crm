@@ -13,6 +13,7 @@ use Yii;
  * @property bool|null $trials
  * @property int|null $status
  * @property int|null $phone
+ * @property int|null $limit
  *
  * @property Cost[] $costs
  * @property Payroll[] $payrolls
@@ -36,9 +37,9 @@ class Building extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['title'], 'string'],
+            [['title','phone'], 'string'],
             [['region', 'status', 'phone'], 'default', 'value' => null],
-            [['region', 'status','phone'], 'integer'],
+            [['region', 'status','limit'], 'integer'],
             [['trials'], 'boolean'],
         ];
     }
@@ -54,6 +55,7 @@ class Building extends \yii\db\ActiveRecord
             'region' => 'Регион',
             'trials' => 'Суд.Процессы',
             'status' => 'Статус',
+            'limit'=> 'Лимит',
             'phone' => 'Телефон',
         ];
     }

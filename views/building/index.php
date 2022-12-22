@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\widgets\MaskedInput;
 /** @var yii\web\View $this */
 /** @var app\models\BuildingSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -13,6 +14,7 @@ use yii\widgets\Pjax;
 
 $this->title = 'Строительные объекты';
 $this->params['breadcrumbs'][] = $this->title;
+$statuses = [1 =>'Активный', 2=>'Завершен',4=> 'На проверке'];
 ?>
 <div class="building-index">
 
@@ -41,9 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'trials:boolean',
             [
                 'attribute' => 'status',
-                'filter'=>[1 =>'Работает', 2=>'Уволен',3=>'Межвахта',4=> 'На проверке'],
+                'value' => function(Building $model) use($statuses) {
+                    return isset($statuses[$model->status]) ? $statuses[$model->status] : $model->status;
+                },
+                'filter'=>[1 =>'Активный', 2=>'Завершён',3=>'На проверке'],
             ],
             'phone',
+            'limit',
             [
                 'class' => ActionColumn::class, 
                 'urlCreator' => function ($action, Building $model, $key, $index, $column) {

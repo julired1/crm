@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 use app\models\Building;
+use kartik\date\DatePicker;
 
 /** @var yii\web\View $this */
 /** @var app\models\Employees $model */
@@ -24,10 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        
+        <?= $form->field($model,'naks')->widget(DatePicker::class, []) ?>
+
 
         <?= $form->field($model, 'type')->dropDownList ([1=> 'Рабочие',2=> 'Call центр',3=> 'Административная группа',4=> 'Бухгалтерия',]) ?>
 
-        <?= $form->field($model, 'naks')->textInput() ?>
         
         <?= $form->field($model, 'password')->passwordInput() ?>
         
