@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Building;
+use app\models\Employees;
+
 
 /**
  * CostController implements the CRUD actions for Cost model.
@@ -46,6 +48,8 @@ class CostController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'building' => Building::getList(),
+            'employees' => Employees::getList(),
+
         ]);
     }
 
@@ -98,6 +102,8 @@ class CostController extends Controller
         return $this->render('form', [
             'model' => $model,
             'building' => Building::getList(),
+            'employees' => Employees::getList(),
+
         ]);
     }
 
@@ -119,6 +125,8 @@ class CostController extends Controller
         return $this->render('form', [
             'model' => $model,
             'building' => Building::getList(),
+            'employees' => Employees::getList(),
+
         ]);
     }
     

@@ -29,6 +29,7 @@ use Yii;
  * @property Payroll[] $payrolls
  * @property Workman[] $workmen
  * @property Region $regionObj
+ * @property Employees $employeesObj
  */
 class Employees extends \yii\db\ActiveRecord
 {
@@ -100,6 +101,10 @@ class Employees extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Region::class, ['id' => 'region']);
     }
+        public function getEmployeesObj()
+    {
+        return $this->hasOne(Region::class, ['id' => 'name']);
+    }
 
     public function getCosts()
     {
@@ -135,5 +140,12 @@ class Employees extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Workman::class, ['employees_id' => 'id']);
     }
-    
+     public static function getList(): array{
+    $models = self::find()->orderBy('name')->all();
+    $list =[];
+    foreach($models as $model){
+        $list[$model->id] = $model->name;   
+        }
+    return $list;
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Cost;
+use app\models\Employees;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -11,6 +12,8 @@ use yii\widgets\Pjax;
 /** @var app\models\CostSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 /** @var @building array*/
+/** @var @Employees array*/
+
 
 $this->title = 'Табель затрат';
 $this->params['breadcrumbs'][] = $this->title;
@@ -39,7 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter'=>$building,
             ],
-            'employees_id',
+            [
+                'attribute' => 'employees_id',
+                'value' => function(Cost $model) use($employees) {
+                    return $model->employeesObj? $model->employeesObj->name : $model->employees;
+                },
+                'filter'=>$employees,
+            ],
             'product',
             'price',
             [

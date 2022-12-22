@@ -18,6 +18,8 @@ class m221210_184941_create_cost_table extends Migration
             'product' => $this->smallInteger()->comment('Наименование'),
             'price' => $this->money()->notNull()->comment('Наименование'),
         ]);
+                
+        
          $this->createIndex(
         'idx-cost-employees_id',
         'cost',

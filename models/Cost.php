@@ -18,6 +18,8 @@ use Yii;
  * @property Cost[] $costsearch
  * @property CostSearch::search(array $params)
  * @property Region $buildingObj
+ * @property Region $employeesObj
+
 
 
  */
@@ -87,6 +89,10 @@ class Cost extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Building::class, ['id' => 'building']);
     }
+         public function getEmployeesObj()
+    {
+        return $this->hasOne(Employees::class, ['id' => 'employees']);
+    }
     /**
         * 
         * @return array
@@ -95,10 +101,11 @@ class Cost extends \yii\db\ActiveRecord
            $models = self::find()->orderBy('title')->all();
            $list =[];
            foreach($models as $model){
-               $list[$model->id] = $model->title; 
+           $list[$model->id] = $model->title;
            }
            return $list;
        }
+       
 }
 
 
