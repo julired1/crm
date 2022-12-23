@@ -36,9 +36,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=> $Building,
                 
             ],
-            'employees_id',
+            [
+                'attribute'=>'employees_id',
+                'value'=>'employees.name',
+            ],
             'medical:boolean',
-            'naks',
+            [
+                'attribute' => 'naks',
+                'format'=>'date',
+            ],
             'criminal:boolean',
             'speciality:ntext',
             'limit',

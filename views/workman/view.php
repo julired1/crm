@@ -33,7 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'building.title',
             'employees_id',
             'medical:boolean',
-            'naks',
+            [
+                'attribute' => 'naks',
+                'format'=>'date',
+            ],
             'criminal:boolean',
             'speciality:ntext',
             'limit',

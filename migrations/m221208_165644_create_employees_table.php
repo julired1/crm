@@ -24,7 +24,7 @@ class m221208_165644_create_employees_table extends Migration
             'status' => $this->smallInteger(10)->comment('Статус'),
             'email' => $this->text()->comment('Email адрес'),
             'birthday' => $this->date()->notNull()->comment('Дата рождения'),
-            'phone' => $this->bigInteger()->comment('Телефон'),
+            'phone' => $this->text(20)->comment('Телефон'),
             'medical' => $this->boolean()->comment('Медицинский осмотр'),
             'education' => $this->text()->comment('Образование'),
             'worktime' => $this->time()->comment('Рабочее время'),

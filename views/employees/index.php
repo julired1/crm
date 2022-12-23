@@ -14,6 +14,8 @@ use yii\widgets\Pjax;
 $this->title = 'Сотрудники';
 $this->params['breadcrumbs'][] = $this->title;
 $statuses = [1 =>'Работает', 2=>'Уволен',3=> 'Межва хта',4=> 'На проверке'];
+$types =[1=>'Рабочий',2=>'CALL центр',3=>'Админ.Группа',4=>'Бухгалтерия'];
+$criminals = [1=>'Есть',2=>'Отсутствует'];
 ?>
 <div class="employees-index">
 
@@ -34,8 +36,11 @@ $statuses = [1 =>'Работает', 2=>'Уволен',3=> 'Межва хта',4
             ['attribute' => 'name',
             ],
             [
-            'attribute' => 'type',
-            'filter' => [1=> 'Рабочие',2=> 'Call центр',3=> 'Административная группа',4=> 'Бухгалтерия',]
+                'attribute' => 'type',
+                'value' => function(Employees $model) use($types) {
+                return isset($types[$model->type]) ? $types[$model->type] : $model->type;
+                },
+                'filter' => [1=> 'Рабочие',2=> 'Call центр',3=> 'Административная группа',4=> 'Бухгалтерия',]
             ],
              //'naks:boolean',
             [
@@ -43,7 +48,7 @@ $statuses = [1 =>'Работает', 2=>'Уволен',3=> 'Межва хта',4
                 'format'=>'date',
                 'visible' => $searchModel->type == 1,
             ],
-            'is_admin:boolean',
+            //'is_admin:boolean',
             'speciality:ntext',
             [
                 'attribute' => 'region',
@@ -56,6 +61,9 @@ $statuses = [1 =>'Работает', 2=>'Уволен',3=> 'Межва хта',4
             //'criminal:boolean',
             [
                 'attribute' => 'criminal',
+                'value'=>function(Employees $model) use ($criminals){
+                    return isset($criminals[$model->criminal])?$criminals[$model->criminal]: $model->criminal;
+                },
                 'visible' => $searchModel->type == 1,
             ],
             [
@@ -68,9 +76,9 @@ $statuses = [1 =>'Работает', 2=>'Уволен',3=> 'Межва хта',4
             'email:email',
             'birthday:date',
             'phone',
-            'medical:boolean',
             [
                 'attribute' => 'medical',
+                'format'=>'boolean',
                 'visible' => $searchModel->type == 1,
             ],
                          //'education:boolean',

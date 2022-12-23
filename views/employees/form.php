@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 use app\models\Building;
 use kartik\date\DatePicker;
+use yii\widgets\MaskedInput;
+use kartik\time\TimePicker;
 
 /** @var yii\web\View $this */
 /** @var app\models\Employees $model */
@@ -48,15 +50,18 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <?= $form->field($model, 'email')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model, 'birthday')->textInput() ?>
+        <?= $form->field($model,'birthday')->widget(DatePicker::class, []) ?>
 
-        <?= $form->field($model, 'phone')->textInput() ?>
+        <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::class, [
+    'mask' => '+7-(999)-999-99-99',]) ?>
 
         <?= $form->field($model, 'medical')->checkbox() ?>
 
         <?= $form->field($model, 'education')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model, 'worktime')->textInput() ?>
+        <?= $form->field($model,'worktime')->widget(TimePicker::class,['pluginOptions'=> ['showMeridian'=> false]]) ?>
+
+
 
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

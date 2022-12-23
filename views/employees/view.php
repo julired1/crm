@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Building;
+use app\models\Employees;
 
 /** @var yii\web\View $this */
 /** @var app\models\Employees $model */
@@ -9,6 +11,8 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Сотрудники', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$types =[1=> 'Рабочие',2=> 'Call центр',3=> 'Административная группа',4=> 'Бухгалтерия',];
+$statuses = [1 =>'Работает', 2=>'Уволен',3=>'Межвахта',4=> 'На проверке'];
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="employees-view">
@@ -31,16 +35,39 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'type',
+            [
+               'attribute'=>'type',
+                'value' => function(Employees $model) use($types) {
+                    return isset($types[$model->type]) ? $types[$model->type] : $model->type;
+                },
+            ],
             'is_admin:boolean',
-            'naks',
+            [
+                'attribute' => 'naks',
+                'format'=>'date',
+            ],
             'speciality:ntext',
-            'region',
+            [
+                'attribute'=>'region',
+                'value' => function(Employees $model) use($regions) {
+                return $model->regionObj->name;
+                },
+                
+            ],
             'examination:boolean',
             'criminal:boolean',
-            'status',
+            [
+                'attribute'=>'status',
+                'value' => function(Employees $model) use($statuses) {
+                    return isset($statuses[$model->status]) ? $statuses[$model->status] : $model->status;
+                },
+                
+            ],
             'email:ntext',
-            'birthday',
+            [
+                'attribute'=>'birthday',
+                'format'=>'date',
+            ],
             'phone',
             'medical:boolean',
             'education:ntext',

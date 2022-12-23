@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use app\models\Building;
+use kartik\time\TimePicker;
 
 /** @var yii\web\View $this */
 /** @var app\models\Payroll $model */
@@ -24,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model, 'building_id')->textInput() ?>
+        <?= $form->field($model, 'building_id')->dropDownList([$Building]) ?>
 
         <?= $form->field($model, 'speciality')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model, 'worktime')->textInput() ?>
+        <?= $form->field($model,'worktime')->widget(TimePicker::class,['pluginOptions'=> ['showMeridian'=> false]]) ?>
 
         <?= $form->field($model, 'coefficient')->textInput() ?>
 
