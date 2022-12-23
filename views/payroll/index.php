@@ -2,6 +2,7 @@
 
 use app\models\Payroll;
 use yii\helpers\Html;
+use app\models\Building;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -30,9 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'employees_id',
-            'name:ntext',
-            'building_id',
+            [
+                'attribute'=>'employees_id',
+                'value'=>'employees.name',
+            ],
+            [
+                'attribute'=>'building_id',
+                'value'=>'building.title',
+                'filter'=>$Building,
+            ],
             'speciality:ntext',
             'worktime',
             'coefficient',

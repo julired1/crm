@@ -82,6 +82,7 @@ class EmployeesController extends Controller
         $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model,
+            'regions' => Region::getList(),
             //'rightIndex' => $this->renderRightIndex($model),
         ]);
 

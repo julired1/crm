@@ -18,8 +18,8 @@ class EmployeesSearch extends Employees
     public function rules()
     {
         return [
-            [['id', 'type', 'region', 'status', 'phone'], 'integer'],
-            [['name', 'naks', 'speciality', 'email', 'birthday', 'education', 'worktime'], 'safe'],
+            [['id', 'type', 'region', 'status'], 'integer'],
+            [['name', 'naks', 'speciality', 'email', 'birthday', 'education', 'worktime','phone'], 'safe'],
             [['examination', 'criminal', 'medical'], 'boolean'],
         ];
     }

@@ -54,12 +54,12 @@ class Employees extends \yii\db\ActiveRecord
         return [
             [['name', 'type', 'birthday','is_admin'], 'required'],
             [['region', 'status', 'phone'], 'default', 'value' => null],
-            [['region', 'status', 'phone'], 'integer'],
+            [['region', 'status'], 'integer'],
             [['naks', 'birthday', 'worktime'], 'safe'],
             [['speciality', 'email', 'education'], 'string'],
             [['email'],'email'],
             [['examination', 'criminal', 'medical','is_admin'], 'boolean'],
-            [['password'],'string', 'max' => 20],
+            [['password','phone'],'string', 'max' => 20],
             [['name','password_hash'], 'string', 'max' => 150],
         ];
     }

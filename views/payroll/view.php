@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Building;
 
 /** @var yii\web\View $this */
 /** @var app\models\Payroll $model */
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'employees_id',
             'name:ntext',
-            'building_id',
+            'building.title',
             'speciality:ntext',
             'worktime',
             'coefficient',

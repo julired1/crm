@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use kartik\date\DatePicker;
 /** @var yii\web\View $this */
 /** @var app\models\Workman $model */
 /** @var yii\widgets\ActiveForm $form */
@@ -25,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'medical')->checkbox() ?>
 
-        <?= $form->field($model, 'naks')->textInput() ?>
+        <?= $form->field($model,'naks')->widget(DatePicker::class, []) ?>
 
         <?= $form->field($model, 'criminal')->checkbox() ?>
 

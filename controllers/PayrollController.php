@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Building;
 use app\models\Payroll;
 use app\models\PayrollSearch;
 use yii\web\Controller;
@@ -44,6 +45,7 @@ class PayrollController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'Building' => Building::getList(),
         ]);
     }
 
@@ -57,6 +59,7 @@ class PayrollController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'Building' => Building::getList(),
         ]);
     }
 
@@ -79,6 +82,7 @@ class PayrollController extends Controller
 
         return $this->render('form', [
             'model' => $model,
+            'Building' => Building::getList(),
         ]);
     }
 
@@ -99,6 +103,7 @@ class PayrollController extends Controller
 
         return $this->render('form', [
             'model' => $model,
+            'Building' => Building::getList(),
         ]);
     }
 
