@@ -19,7 +19,8 @@ class CostSearch extends Cost
     public function rules()
     {
         return [
-            [['building_id', 'employees_id', 'product', 'id'], 'integer'],
+            [['building_id', 'employees_id', 'id'], 'integer'],
+            [['product'],'text'],
             [['price'], 'number'],
         ];
     }

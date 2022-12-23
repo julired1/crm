@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute' => 'building_id',
-                'value' => function(Cost $model) use($building) {
+                'value' => function(Cost $model) use($building_id) {
                     return $model->buildingObj? $model->buildingObj->title : $model->building;
                 },
                 'filter'=>$building,

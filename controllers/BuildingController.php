@@ -7,6 +7,8 @@ use app\models\BuildingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
+
 
 /**
  * BuildingController implements the CRUD actions for Building model.
