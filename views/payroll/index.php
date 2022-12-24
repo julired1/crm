@@ -6,7 +6,8 @@ use yii\helpers\Html;
 use app\models\Building;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+///use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\PayrollSearch $searchModel */
@@ -62,6 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
         ],
+          'layout' => "{summary}\n{export}\n{items}\n{pager}",
     ]); ?>
 
     <?php Pjax::end(); ?>

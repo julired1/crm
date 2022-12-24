@@ -141,4 +141,14 @@ class PayrollController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
+    public function actionPublishedProcessesReport(): string {
+        $searchModel = new PayrollSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('published-processes', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+
+    ]);
+}
 }
