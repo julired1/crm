@@ -4,7 +4,7 @@ use app\models\Workman;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use katrik\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\WorkmanSearch $searchModel */

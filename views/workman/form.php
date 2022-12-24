@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'medical')->checkbox() ?>
 
-        <?= $form->field($model,'naks')->widget(DatePicker::class, ['dd.mm.yyyy']) ?>
+        <?= $form->field($model,'naks')->widget(DatePicker::class, []) ?>
 
         <?= $form->field($model, 'criminal')->checkbox() ?>
 
