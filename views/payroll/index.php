@@ -46,11 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'building.title',
                 'filter'=>$Building,
             ],
-            [
-                'attribute'=>'speciality',
-                'value' => function(Cost $model) use($Employees) {
-                return $model->employeesObj? $model->employeesObj->speciality : $model->employees;},
-            ],
+            ///[
+            ////    'attribute'=>'speciality',
+             ////   'value' => function(Cost $model) use($Employees) {
+          ///      return $model->employeesObj? $model->employeesObj->speciality : $model->employees;},
+           //// ],
             'worktime',
             'coefficient',
             'vat',

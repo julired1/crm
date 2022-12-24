@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'building_id')->dropDownList([$Building]) ?>
 
-        <?= $form->field($model, 'speciality')->dropDownList ([$employees]) ?>
+       <?= $form->field($model, 'speciality')->textInput() ?>
 
         <?= $form->field($model,'worktime')->textInput() ?>
 

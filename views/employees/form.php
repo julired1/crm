@@ -12,7 +12,7 @@ use kartik\time\TimePicker;
 /** @var yii\widgets\ActiveForm $form */
 /** @var @Regions array*/
 
-$this->title = $model -> isNewRecord ?  'Создать объект ': 'Изменить объект';
+$this->title = $model -> isNewRecord ?  'Добавить сотрудника ': 'Изменить объект';
 $this->params['breadcrumbs'][] = ['label' => 'Сотрудники', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
