@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'education')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model,'worktime')->widget(TimePicker::class,['pluginOptions'=> ['showMeridian'=> false]]) ?>
+        <?= $form->field($model,'worktime')->widget(TimePicker::class,[]) ?>
 
 
 

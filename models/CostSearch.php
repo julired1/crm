@@ -8,6 +8,8 @@ use app\models\Cost;
 use app\models\CostSearch;
 
 
+
+
 /**
  * CostSearch represents the model behind the search form of `app\models\Cost`.
  */
@@ -20,7 +22,7 @@ class CostSearch extends Cost
     {
         return [
             [['building_id', 'employees_id', 'id'], 'integer'],
-            [['product'],'text'],
+            [['product'],'string'],
             [['price'], 'number'],
         ];
     }
@@ -42,7 +44,7 @@ class CostSearch extends Cost
      * @return ActiveDataProvider
      */
     
-    public $Costsearch;
+    public $searchCost;
     public function search(array $params):ActiveDataProvider {
                     $query = Cost::find();
 

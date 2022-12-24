@@ -17,7 +17,7 @@ class m221210_164324_create_payroll_table extends Migration
             'name' => $this->text()->notNull()->comment('ФИО'),
             'building_id' => $this->integer()->notNull()->comment('Объект'),
             'speciality' => $this->text()->comment('Специальность'),
-             'worktime' => $this->time()->comment('Рабочее время'),
+             'worktime' => $this->integer()->comment('Кол-во, чел/час'),
              'coefficient' => $this->integer()->comment('Зарплатный коэффициент'),
              'vat' => $this->integer()->comment('НДС'),
              'daily' => $this->integer()->comment('Cуточные'),

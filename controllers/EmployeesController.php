@@ -119,7 +119,7 @@ class EmployeesController extends Controller
 
         return $this->render('form', [
             'model' => $model,
-            'regions' => Region::getList(),
+            'regions' => Region::getList()
         ]);
     }
 

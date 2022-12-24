@@ -17,8 +17,8 @@ class PayrollSearch extends Payroll
     public function rules()
     {
         return [
-            [['employees_id', 'building_id', 'coefficient', 'vat', 'daily', 'hourly', 'id'], 'integer'],
-            [['name', 'speciality', 'worktime'], 'safe'],
+            [['employees_id', 'building_id', 'coefficient', 'vat', 'daily', 'hourly', 'id','worktime'], 'integer'],
+            [['name', 'speciality'], 'safe'],
         ];
     }
 

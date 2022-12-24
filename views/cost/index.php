@@ -3,9 +3,8 @@
 use app\models\Cost;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\GridView;
 use yii\grid\ActionColumn;
-//use yii\grid\GridView;
+use yii\grid\GridView;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
@@ -37,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute' => 'building_id',
-                'value' => function(Cost $model) use($building_id) {
+                'value' => function(Cost $model) use($building) {
                     return $model->buildingObj? $model->buildingObj->title : $model->building;
                 },
                 'filter'=>$building,
@@ -53,12 +52,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'price',
             [
                 'class' => ActionColumn::class,
-                'urlCreator' => function ($action, Cost $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+               'urlCreator' => function ($action, Cost $model, $key, $index, $column) {
+                   return Url::toRoute([$action, 'id' => $model->id]);
+               }
             ],
         ],
-        'layout' => "{summary}\n{export}\n{items}\n{pager}",
+       'layout' => "{summary}\n{export}\n{items}\n{pager}",
     ]); ?>
 
     <?php Pjax::end(); ?>

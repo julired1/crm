@@ -11,7 +11,7 @@ use Yii;
  * @property string $name ФИО
  * @property int $building_id Объект
  * @property string|null $speciality Специальность
- * @property string|null $worktime Рабочее время
+ * @property string|null $worktime Кол-во чел/час
  * @property int|null $coefficient Зарплатный коэффициент
  * @property int|null $vat НДС
  * @property int|null $daily Cуточные
@@ -38,9 +38,8 @@ class Payroll extends \yii\db\ActiveRecord
         return [
             [['employees_id', 'name', 'building_id'], 'required'],
             [['employees_id', 'building_id', 'coefficient', 'vat', 'daily', 'hourly'], 'default', 'value' => null],
-            [['employees_id', 'building_id', 'coefficient', 'vat', 'daily', 'hourly'], 'integer'],
+            [['employees_id', 'building_id', 'coefficient', 'vat', 'daily', 'hourly','worktime'], 'integer'],
             [['name', 'speciality'], 'string'],
-            [['worktime'], 'safe'],
             [['building_id'], 'exist', 'skipOnError' => true, 'targetClass' => Building::class, 'targetAttribute' => ['building_id' => 'id']],
             [['employees_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employees::class, 'targetAttribute' => ['employees_id' => 'id']],
         ];
@@ -57,7 +56,7 @@ class Payroll extends \yii\db\ActiveRecord
             'name' => 'ФИО',
             'building_id' => 'Объект',
             'speciality' => 'Специальность',
-            'worktime' => 'Рабочее время',
+            'worktime' => 'Кол-во чел/час',
             'coefficient' => 'Зарплатный коэффициент',
             'vat' => 'НДС',
             'daily' => 'Cуточные',

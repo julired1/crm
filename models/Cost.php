@@ -42,7 +42,7 @@ class Cost extends \yii\db\ActiveRecord
             [['building_id', 'employees_id', 'price'], 'required'],
             [['building_id', 'employees_id',], 'default', 'value' => null],
             [['building_id', 'employees_id'], 'integer'],
-            [['product'],'text'],
+            [['product'],'string'],
             [['price'], 'number'],
             [['building_id'], 'exist', 'skipOnError' => true, 'targetClass' => Building::class, 'targetAttribute' => ['building_id' => 'id']],
             [['employees_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employees::class, 'targetAttribute' => ['employees_id' => 'id']],

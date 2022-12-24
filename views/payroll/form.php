@@ -22,15 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'employees_id')->textInput() ?>
-
-        <?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'employees_id')->dropDownList ([$employees]) ?>
 
         <?= $form->field($model, 'building_id')->dropDownList([$Building]) ?>
 
-        <?= $form->field($model, 'speciality')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'speciality')->dropDownList ([$employees]) ?>
 
-        <?= $form->field($model,'worktime')->widget(TimePicker::class,['pluginOptions'=> ['showMeridian'=> false]]) ?>
+        <?= $form->field($model,'worktime')->textInput() ?>
 
         <?= $form->field($model, 'coefficient')->textInput() ?>
 

@@ -10,6 +10,8 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\PayrollSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var @Employees array*/
+
 
 $this->title = 'Табель зарплат';
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,31 +28,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+       'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             [
                 'attribute'=>'employees_id',
-                'value'=>'employees.name',
+                'value' => function(Cost $model) use($Employees) {
+                return $model->employeesObj? $model->employeesObj->name : $model->employees;}
             ],
+                'filter'=>$Employees,
             [
                 'attribute'=>'building_id',
                 'value'=>'building.title',
                 'filter'=>$Building,
             ],
-            'speciality:ntext',
+                'attribute'=>'speciality',
+                'value' => function(Cost $model) use($Employees) {
+                return $model->employeesObj? $model->employeesObj->speciality : $model->employees;},
             'worktime',
             'coefficient',
             'vat',
             'daily',
             'hourly',
             [
-                'class' => ActionColumn::class,
-                'urlCreator' => function ($action, Payroll $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+               'class' => ActionColumn::class,
+               'urlCreator' => function ($action, Payroll $model, $key, $index, $column) {
+                  return Url::toRoute([$action, 'id' => $model->id]);
+                }
             ],
         ],
     ]); ?>

@@ -141,11 +141,12 @@ class Employees extends \yii\db\ActiveRecord
         return $this->hasMany(Workman::class, ['employees_id' => 'id']);
     }
      public static function getList(): array{
-    $models = self::find()->orderBy('name')->all();
+    $models = self::find()
+            ->orderBy('name','speciality')->all();
     $list =[];
     foreach($models as $model){
-        $list[$model->id] = $model->name;   
-        }
+    $list[$model->id] = $model->name.','.$model->speciality;
+   }
     return $list;
     }
 }

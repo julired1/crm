@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Building;
 use app\models\Payroll;
+use app\models\Employees;
 use app\models\PayrollSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -46,6 +47,7 @@ class PayrollController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'Building' => Building::getList(),
+            'Employees' => Employees::getList()
         ]);
     }
 
@@ -60,6 +62,7 @@ class PayrollController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'Building' => Building::getList(),
+            'employees' => Employees::getList(),
         ]);
     }
 
@@ -83,6 +86,7 @@ class PayrollController extends Controller
         return $this->render('form', [
             'model' => $model,
             'Building' => Building::getList(),
+            'employees' => Employees::getList(),
         ]);
     }
 
@@ -104,6 +108,7 @@ class PayrollController extends Controller
         return $this->render('form', [
             'model' => $model,
             'Building' => Building::getList(),
+            'employees' => Employees::getList(),
         ]);
     }
 
