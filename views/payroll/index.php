@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Payroll;
+use app\models\Employees;
 use yii\helpers\Html;
 use app\models\Building;
 use yii\helpers\Url;
@@ -36,17 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'employees_id',
                 'value' => function(Cost $model) use($Employees) {
-                return $model->employeesObj? $model->employeesObj->name : $model->employees;}
-            ],
+                return $model->employeesObj? $model->employeesObj->name : $model->employees;},
                 'filter'=>$Employees,
+            ],
             [
                 'attribute'=>'building_id',
                 'value'=>'building.title',
                 'filter'=>$Building,
             ],
+            [
                 'attribute'=>'speciality',
                 'value' => function(Cost $model) use($Employees) {
                 return $model->employeesObj? $model->employeesObj->speciality : $model->employees;},
+            ],
             'worktime',
             'coefficient',
             'vat',
