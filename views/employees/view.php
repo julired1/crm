@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\Building;
 use app\models\Employees;
+use kartik\time\TimePicker;
 
 /** @var yii\web\View $this */
 /** @var app\models\Employees $model */
