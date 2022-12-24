@@ -42,7 +42,7 @@ class CostSearch extends Cost
      * @return ActiveDataProvider
      */
     
-    public $searchCost;
+    public $Costsearch;
     public function search(array $params):ActiveDataProvider {
                     $query = Cost::find();
 

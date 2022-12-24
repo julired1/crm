@@ -17,9 +17,7 @@ class m221210_184941_create_cost_table extends Migration
             'employees_id' => $this->integer()->notNull()->comment('Сотрудник'),
             'product' => $this->text()->comment('Наименование'),
             'price' => $this->money()->notNull()->comment('Наименование'),
-        ]);
-       
-                
+        ]);       
         
          $this->createIndex(
         'idx-cost-employees_id',
@@ -52,9 +50,7 @@ class m221210_184941_create_cost_table extends Migration
      */
     public function safeDown()
     {
-         $this->alterColumn($cost,[
-        'product'=> $this->text()->comment('Наименование')
-    ]);
+
          $this->dropForeignKey(
         'fk_employees_id',
         'employees',
