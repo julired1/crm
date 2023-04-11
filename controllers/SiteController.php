@@ -9,6 +9,11 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\rest\ActiveController;
+
+class EmployeesController extends ActiveController{
+public $modelClass = 'app\models\Employees';
+}
 
 class SiteController extends Controller
 {
